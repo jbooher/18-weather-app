@@ -1,0 +1,35 @@
+body {
+  color: #fff;
+  font-family: Helvetica;
+  margin: 0;
+  background-color: #3498DB; }
+
+.heading {
+  text-align: center;
+  margin: 20px; }
+  .heading--city {
+    margin: 0;
+    font-weight: normal; }
+  .heading--day {
+    margin: 0;
+    font-weight: normal; }
+  .heading--weather {
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: normal; }
+  .heading--temp {
+    margin: 0;
+    font-weight: normal;
+    font-size: 5em; }
+
+.forecast {
+  width: 80%;
+  margin: 0 auto; }
+  .forecast--day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .forecast--day span:nth-child(3):before {
+      content: "High: "; }
+    .forecast--day span:nth-child(4):before {
+      content: "Low: "; }

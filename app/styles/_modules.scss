@@ -1,0 +1,41 @@
+.heading {
+  text-align: center;
+  margin: 20px;
+  &--city {
+    margin: 0;
+    font-weight: normal;
+  }
+  &--day {
+    margin: 0;
+    font-weight: normal;
+  }
+  &--weather {
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: normal;
+  }
+  &--temp {
+    margin: 0;
+    font-weight: normal;
+    font-size: 5em;
+  }
+}
+
+.forecast {
+  width: 80%;
+  margin: 0 auto;
+
+  &--day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span:nth-child(3):before {
+      content: "High: ";
+    }
+
+    span:nth-child(4):before {
+      content: "Low: ";
+    }
+  }
+}
