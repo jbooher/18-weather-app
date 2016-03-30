@@ -15,27 +15,27 @@ class Weather {
 
     //Looping through days to get onto page.
     for(let i = 1; i <= 5; i++) {
-      div = document.createElement("div");
+      div = document.querySelector(`.forecast--hourly${i}`);
       div.classList.add("forecast--hour");
 
-      span = document.createElement("span");
+      span = div.querySelector(".span1");
       span.innerHTML = this[`hour${i}`];
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      img = document.createElement("img");
+      img = div.querySelector("img");
       hour = this[`hour${i}Icon`];
       img.src = `http://openweathermap.org/img/w/${hour}.png`;
-      div.appendChild(img);
+      // div.appendChild(img);
 
-      span = document.createElement("span");
+      span = div.querySelector(".span2");
       span.innerHTML = Math.round(this[`hour${i}TempHigh`]);
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      span = document.createElement("span");
+      span = div.querySelector(".span3");
       span.innerHTML = Math.round(this[`hour${i}TempLow`]);
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      document.querySelector(".forecast--hourly").appendChild(div);
+      // document.querySelector(".forecast--hourly").appendChild(div);
     }
   }
 
@@ -90,27 +90,27 @@ class Weather {
 
     //Looping through days to get onto page.
     for(let i = 1; i <= 5; i++) {
-      div = document.createElement("div");
+      div = document.querySelector(`.forecast--weekly${i}`);
       div.classList.add("forecast--day");
 
-      span = document.createElement("span");
+      span = div.querySelector(".span1");
       span.innerHTML = this[`day${i}`];
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      img = document.createElement("img");
+      img = div.querySelector("img");
       day = this[`day${i}Icon`];
       img.src = `http://openweathermap.org/img/w/${day}.png`;
-      div.appendChild(img);
+      // div.appendChild(img);
 
-      span = document.createElement("span");
+      span = div.querySelector(".span2");
       span.innerHTML = Math.round(this[`day${i}TempHigh`]);
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      span = document.createElement("span");
+      span = div.querySelector(".span3");
       span.innerHTML = Math.round(this[`day${i}TempLow`]);
-      div.appendChild(span);
+      // div.appendChild(span);
 
-      document.querySelector(".forecast--weekly").appendChild(div);
+      // document.querySelector(".forecast--weekly").appendChild(div);
     }
 
   }

@@ -32,11 +32,8 @@ submit.addEventListener("click", (e) => {
     .then((response) => {
       return response.json();
     }).then((response) => {
-      console.log(response);
       lat = response.results[0].geometry.location.lat;
-      console.log(lat);
       long = response.results[0].geometry.location.lng;
-      console.log(long);
       const weather2 = new Weather(lat,long);
     });
 })
