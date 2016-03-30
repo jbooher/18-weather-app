@@ -25,7 +25,7 @@ navigator.geolocation.watchPosition((position) => {
 });
 
 submit.addEventListener("click", (e) => {
-  search = input.value;
+  search = encodeURI(input.value);
   baseUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${search}&key=${token}`;
 
   fetch(baseUrl)
