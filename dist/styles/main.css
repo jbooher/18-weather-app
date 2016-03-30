@@ -7,6 +7,22 @@ body {
 .heading {
   text-align: center;
   margin: 20px; }
+  .heading--button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px; }
+    .heading--button-container .selected {
+      background-color: #fff;
+      color: #3498DB; }
+  .heading--button {
+    display: flex;
+    width: 100px;
+    height: 50px;
+    border: 1px solid #fff;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 5px; }
   .heading--city {
     margin: 0;
     font-weight: normal; }
@@ -25,11 +41,14 @@ body {
 .forecast {
   width: 80%;
   margin: 0 auto; }
-  .forecast--day {
+  .forecast--day, .forecast--hour {
     display: flex;
     justify-content: space-between;
     align-items: center; }
-    .forecast--day span:nth-child(3):before {
+    .forecast--day span:nth-child(3):before, .forecast--hour span:nth-child(3):before {
       content: "High: "; }
-    .forecast--day span:nth-child(4):before {
+    .forecast--day span:nth-child(4):before, .forecast--hour span:nth-child(4):before {
       content: "Low: "; }
+
+.hidden {
+  display: none; }
