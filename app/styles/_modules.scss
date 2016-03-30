@@ -25,12 +25,47 @@
     border-radius: 5px;
   }
 
+  &--search {
+    height: 47.5px;
+    width: 250px;
+    background-color: #3498DB;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0 10px;
+
+    &::-webkit-input-placeholder {
+      color: #fff;
+    }
+  }
+
+  &--submit {
+    height: 50px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    color: #3498DB;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-left: -10px;
+  }
+}
+
+.forecast {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+
   &--city {
     margin: 0;
     font-weight: normal;
   }
-  &--day {
+  &--today {
     margin: 0;
+    text-align: center;
     font-weight: normal;
   }
   &--weather {
@@ -43,11 +78,6 @@
     font-weight: normal;
     font-size: 5em;
   }
-}
-
-.forecast {
-  width: 80%;
-  margin: 0 auto;
 
   &--day, &--hour {
     display: flex;

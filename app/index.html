@@ -14,14 +14,19 @@
         <div id="hourly" class="heading--button">Hourly</div>
       </div>
 
-      <h1 class="heading--city"></h1>
-      <h2 class="heading--day"></h2>
-      <h2 class="heading--weather"></h2>
-      <h3 class="heading--temp"></h3>
+      <div class="heading--search-area">
+        <input id="input" type="text" placeholder="Address, City, State" class="heading--search">
+        <input id="submit" type="submit" class="heading--submit">
+      </div>
 
     </header>
 
     <main class="forecast">
+
+      <h1 class="forecast--city"></h1>
+      <h2 class="forecast--today"></h2>
+      <h2 class="forecast--weather"></h2>
+      <h3 class="forecast--temp"></h3>
 
       <div id="weeks" class="forecast--weekly"></div>
       <div id="hours" class="forecast--hourly hidden"></div>

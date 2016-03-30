@@ -23,24 +23,48 @@ body {
     justify-content: center;
     text-transform: uppercase;
     border-radius: 5px; }
-  .heading--city {
-    margin: 0;
-    font-weight: normal; }
-  .heading--day {
-    margin: 0;
-    font-weight: normal; }
-  .heading--weather {
-    margin: 0;
-    text-transform: capitalize;
-    font-weight: normal; }
-  .heading--temp {
-    margin: 0;
-    font-weight: normal;
-    font-size: 5em; }
+  .heading--search {
+    height: 47.5px;
+    width: 250px;
+    background-color: #3498DB;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0 10px; }
+    .heading--search::-webkit-input-placeholder {
+      color: #fff; }
+  .heading--submit {
+    height: 50px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    color: #3498DB;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-left: -10px; }
 
 .forecast {
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  text-align: center; }
+  .forecast--city {
+    margin: 0;
+    font-weight: normal; }
+  .forecast--today {
+    margin: 0;
+    text-align: center;
+    font-weight: normal; }
+  .forecast--weather {
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: normal; }
+  .forecast--temp {
+    margin: 0;
+    font-weight: normal;
+    font-size: 5em; }
   .forecast--day, .forecast--hour {
     display: flex;
     justify-content: space-between;

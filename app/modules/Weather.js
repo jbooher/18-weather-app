@@ -1,7 +1,8 @@
 class Weather {
 
-  constructor(location) {
-    this.location = location;
+  constructor(lat, long) {
+    this.lat = lat;
+    this.long = long;
     this.getWeeklyData();
     this.getHourlyData();
   }
@@ -42,41 +43,33 @@ class Weather {
     const token = "85849687be057885aacb79986f359ec4";
     const baseUrl = "http://api.openweathermap.org/data/2.5/forecast?";
 
-    navigator.geolocation.watchPosition((position) => {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
+    fetch(`${baseUrl}lat=${this.lat}&lon=${this.long}&APPID=${token}&units=imperial`)
+      .then((response) => {
+        return response.json();
+      }).then((response) => {
 
-      fetch(`${baseUrl}lat=${lat}&lon=${lon}&APPID=${token}&units=imperial`)
-        .then((response) => {
-          return response.json();
-        }).then((response) => {
-          console.log(response);
+        let time;
+        //Get 5 hour forecast
+        for(let i = 1; i <= 5; i++) {
 
-          let time;
-          //Get 5 hour forecast
-          for(let i = 1; i <= 5; i++) {
-
-            //Setting time to am/pm
-            time = new Date(response.list[i].dt_txt).getHours();
-            if(time > 12) {
-              time = `${time - 12}pm`;
-            }
-            else {
-              time = `${time}am`;
-            }
-            this[`hour${i}`] = time;
-            console.log(this[`hour${i}`]);
-            this[`hour${i}Icon`] = response.list[i].weather[0].icon;
-            console.log(this[`hour${i}Icon`]);
-            this[`hour${i}TempHigh`] = Math.round(response.list[i].main.temp_max);
-            console.log(this[`hour${i}TempHigh`]);
-            this[`hour${i}TempLow`] = Math.round(response.list[i].main.temp_min);
-            console.log(this[`hour${i}TempLow`]);
+          //Setting time to am/pm
+          time = new Date(response.list[i].dt_txt).getHours();
+          if(time > 12) {
+            time = `${time - 12}pm`;
           }
+          else if (time === 0) {
+            time = `12am`;
+          }
+          else {
+            time = `${time}am`;
+          }
+          this[`hour${i}`] = time;
+          this[`hour${i}Icon`] = response.list[i].weather[0].icon;
+          this[`hour${i}TempHigh`] = Math.round(response.list[i].main.temp_max);
+          this[`hour${i}TempLow`] = Math.round(response.list[i].main.temp_min);
+        }
 
-          this.renderHourly();
-
-      });
+        this.renderHourly();
 
     });
 
@@ -84,10 +77,10 @@ class Weather {
 
   renderWeekly() {
     //Putting today's information into the divs already made
-    document.querySelector(".heading--city").innerHTML = this.city;
-    document.querySelector(".heading--day").innerHTML = this.today;
-    document.querySelector(".heading--weather").innerHTML = this.weather;
-    document.querySelector(".heading--temp").innerHTML = `${this.currentTemp}&deg;`;
+    document.querySelector(".forecast--city").innerHTML = this.city;
+    document.querySelector(".forecast--today").innerHTML = this.today;
+    document.querySelector(".forecast--weather").innerHTML = this.weather;
+    document.querySelector(".forecast--temp").innerHTML = `${this.currentTemp}&deg;`;
 
     //Preparing to loop over days to place on page
     let div;
@@ -127,33 +120,27 @@ class Weather {
     const token = "85849687be057885aacb79986f359ec4";
     const baseUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?";
 
-    navigator.geolocation.watchPosition((position) => {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
+    fetch(`${baseUrl}lat=${this.lat}&lon=${this.long}&APPID=${token}&units=imperial`)
+      .then((response) => {
+        return response.json();
+      }).then((response) => {
 
-      fetch(`${baseUrl}lat=${lat}&lon=${lon}&APPID=${token}&units=imperial`)
-        .then((response) => {
-          return response.json();
-        }).then((response) => {
+        //Today's weather info
+        this.city = response.city.name;
+        this.today = new Date(response.list[0].dt * 1000).toDateString().split(" ")[0];
+        this.weather = response.list[0].weather[0].description;
+        this.currentTemp = Math.round(response.list[0].temp.day);
 
-          //Today's weather info
-          this.city = response.city.name;
-          this.today = new Date(response.list[0].dt * 1000).toDateString().split(" ")[0];
-          this.weather = response.list[0].weather[0].description;
-          this.currentTemp = Math.round(response.list[0].temp.day);
+        //Get 5 day forecast
+        for(let i = 1; i <= 5; i++) {
+          this[`day${i}`] = new Date(response.list[i].dt * 1000).toDateString().split(" ")[0];
+          this[`day${i}Icon`] = response.list[i].weather[0].icon;
+          this[`day${i}TempHigh`] = response.list[i].temp.max;
+          this[`day${i}TempLow`] = response.list[i].temp.min;
+        }
 
-          //Get 5 day forecast
-          for(let i = 1; i <= 5; i++) {
-            this[`day${i}`] = new Date(response.list[i].dt * 1000).toDateString().split(" ")[0];
-            this[`day${i}Icon`] = response.list[i].weather[0].icon;
-            this[`day${i}TempHigh`] = response.list[i].temp.max;
-            this[`day${i}TempLow`] = response.list[i].temp.min;
-          }
-
-          this.renderWeekly();
-        });
-
-    })
+        this.renderWeekly();
+      });
 
   }
 
