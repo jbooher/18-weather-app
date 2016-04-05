@@ -17,7 +17,7 @@ let baseUrl;
 let lat;
 let long;
 
-navigator.geolocation.watchPosition((position) => {
+navigator.geolocation.getCurrentPosition((position) => {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
 
